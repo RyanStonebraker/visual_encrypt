@@ -1,8 +1,8 @@
 // bmp_encrypt.cpp
 // Ryan Stonebraker
 // 11/25/2016
-// Takes a bmp image and visual encrypts it using a vignere cipher and random
-// number generator
+// Takes a bmp image and visual encrypts it using a char * placement cipher seed and
+// random number generator
 
 #include <iostream>
 using std::cout;
@@ -43,14 +43,14 @@ void modBMP (Image & bmpImg, bool encrypt)
     cout << "Please enter a cipher word/phrase: ";
   else
     cout << "Enter Password: ";
-    
+
   string cipher = userString();
 
   // seed for random generator is summation of cipher phrase
   int seed = 0;
   for (unsigned i = 0; i < cipher.size(); i++)
   {
-    seed += cipher[i];
+    seed += i*cipher[i];
   }
 
   // randomly determines how pixel at (a, i) is affected
